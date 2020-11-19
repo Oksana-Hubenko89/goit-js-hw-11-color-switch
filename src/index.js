@@ -7,36 +7,27 @@ const colors = [
   '#009688',
   '#795548',
 ];
-const randomIntegerFromInterval = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
 const refs = {
     startBtn:document.querySelector('[data-action="start"]'),
     stopBtn:document.querySelector('[data-action="stop"]'),
 };
-
+    const randomIntegerFromInterval = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
 class ColorTimer {
     constructor() {
-        this.randomColorId = null;
-        this.isActive = false;
-        //this.disabled = false;
-    }
+        this.randomColorId = null;       
+        }
     
-    start() {
-        if (this.isActive) {
-            return;
-        } 
-        //this.disabled = true;
-        this.isActive = true;
+    start() {       
+        refs.startBtn.disabled = true;       
         this.randomColorId = setInterval(() => {
             document.body.style.background = colors[randomIntegerFromInterval(0, colors.length - 1)];
         }, 1000);
     }
     stop() {
-        clearInterval(this.randomColorId);
-        this.isActive = false;
-        //this.disabled = false;
+        clearInterval(this.randomColorId);        
+        refs.startBtn.disabled = false;
     }
 };
 
